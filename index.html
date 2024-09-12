@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Классификатор адресов</title>
+    <meta name="description" content="КЛАДР" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="house.ico">
+</head>
+<body>
+<header class="header">
+    <div class="nav-button-container">
+        <button id="button-home-page" class="button-home-page" type="button">На главную</button>
+        <button id="button-type-page" class="button-type-page" type="button">Справочник типов</button>
+    </div>
+    <form id="search-form" class="search-form" name="search-form">
+        <label for="search" class="hide">Введите запрос для поиска</label>
+        <input id="search" class="search" type="search" autocomplete="off" placeholder="Поиск">
+        <label for="submit" class="hide">Поиск</label>
+        <input id="submit" class="submit" name="submit" value="Найти">
+    </form>
+    <label for="type" class="hide">Выберите тип</label>
+    <select class="type-select" name="type-select" id="type"></select>
+    <ul class="breadcrumb" id="breadcrumb"></ul>
+</header>
+<main>
+    <section class="section">
+        <h1 class="title">Классификатор адресов КЛАДР</h1>
+        <table id="table" class="table">
+            <caption id="caption"></caption>
+        </table>
+    </section>
+</main>
+<div id="pagination" class="pagination"></div>
+<div class="button-container">
+    <button class="navigate-button view-button active-button" id="view">
+        <img id="icon-view" src="view.png" alt="Просмотр" onclick="viewAlert()">
+    </button>
+
+    <button class="navigate-button add-button" id="add" onclick="togglePopupAdd()">
+        <img id="icon-add" src="add.png" alt="Добавление">
+    </button>
+
+    <button class="navigate-button edit-button" id="edit" onclick="outputAlert()">
+        <img id="icon-edit" src="edit.png" alt="Редактирование">
+    </button>
+
+    <button class="navigate-button delete-button" id="delete" onclick="outputAlert()">
+        <img id="icon-delete" src="delete.png" alt="Удаление">
+    </button>
+</div>
+
+<div id="popupOverlay"
+     class="overlay-container">
+    <div class="popup-box">
+        <form class="form-container" name="form-container" id="form-container-add">
+            <label for="select-type-form" class="hide">Выберите тип</label>
+            <select class="select-type-form" id="select-type-form">
+                <option>Выберите тип объекта</option>
+            </select>
+
+            <label class="form-label" id="add-name-label"
+                   for="add-name">
+                Название:
+            </label>
+            <input class="form-input" type="text" autocomplete="off"
+                   placeholder="Введите название"
+                   id="add-name" name="add-name" required>
+
+            <label class="form-label" id="add-type-label"
+                   for="add-type">
+                Тип:
+            </label>
+            <input class="form-input" type="text" autocomplete="off"
+                   placeholder="Введите название"
+                   id="add-type" name="add-type" required>
+
+            <label class="form-label" id="add-okato-label"
+                   for="add-okato">
+                ОКАТО:
+            </label>
+            <input class="form-input" type="text" autocomplete="off"
+                   placeholder="Введите ОКАТО"
+                   id="add-okato" name="add-okato" required>
+
+            <label class="form-label" id="add-code-label"
+                   for="add-code">
+                Код налоговой:
+            </label>
+            <input class="form-input" type="text" autocomplete="off"
+                   placeholder="Введите код налоговой"
+                   id="add-code" name="add-code" required>
+
+            <button class="btn-submit-add" id="btn-submit-add"
+                    type="submit">
+                Добавить
+            </button>
+        </form>
+
+        <button class="btn-close-popup"
+                onclick="togglePopupAdd()">
+            Закрыть
+        </button>
+    </div>
+</div>
+
+<div id="popupOverlay-delete"
+     class="overlay-container">
+    <div class="popup-box">
+        <form class="form-container" name="form-container" id="form-container-delete">
+            <span>
+                Вы хотите удалить запись
+            </span>
+            <span id="deleted-row"></span>
+        </form>
+
+        <button class="btn-submit-delete" id="btn-submit-delete"
+                type="submit">
+            Да
+        </button>
+
+        <button class="btn-close-popup"
+                onclick="togglePopupDelete()">
+            Отмена
+        </button>
+    </div>
+</div>
+
+<div id="popupOverlay-type"
+     class="overlay-container">
+    <div class="popup-box">
+        <form class="form-container" name="form-container" id="form-container-type">
+            <label for="select-type-button-form" class="hide">Выберите справочник</label>
+            <select class="select-type-form" id="select-type-button-form">
+                <option>Выберите справочник</option>
+            </select>
+
+            <button class="btn-type" id="btn-type"
+                    type="button">
+                Открыть
+            </button>
+        </form>
+
+        <button class="btn-close-popup"
+                onclick="togglePopupType()">
+            Закрыть
+        </button>
+    </div>
+</div>
+
+<script src="scripts.js"></script>
+</body>
+</html>
